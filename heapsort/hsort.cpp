@@ -5,7 +5,8 @@ using namespace std;
 
 #define MAX_SIZE 999
 
-vector<int> qSort(vector<int>& v);
+void hSort(vector<int>* h);
+void heapify(vector<int>* h);
 
 int main(int argc, char** argv){
 	FILE* in;
@@ -21,7 +22,8 @@ int main(int argc, char** argv){
 	}
 	fclose(in);
 
-	iv = qSort(iv);
+	iv = heapify(iv);
+	iv = hSort(iv);
 	for(int i : iv){
 		printf("%d\n", i);
 	}
@@ -29,24 +31,5 @@ int main(int argc, char** argv){
 	return 0;
 }
 
-vector<int> qSort(vector<int>& v){
-	if(v.size() <= 1) return v;
-
-	vector<int> l, r;
-	int pvt = v.back();
-	v.pop_back();
-
-	for(int i : v){
-		if(i > pvt){
-			r.push_back(i);
-		}else{
-			l.push_back(i);
-		}
-	}
-
-	l = qSort(l);
-	l.push_back(pvt);
-	r = qSort(r);
-	l.insert(l.end(), r.begin(), r.end());
-	return l;
+void hSort(vector<int>* h){
 }
